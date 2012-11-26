@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="bike" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="182px" height="182px" viewBox="0 0 182 182" enable-background="new 0 0 182 182" xml:space="preserve">
+<circle id="background" fill="#FFFFFF" cx="91" cy="91" r="88"/>
+<circle id="border" fill="none" stroke="#231F20" stroke-width="6" stroke-miterlimit="10" cx="91" cy="91" r="88"/>
+<path id="rear-wheel" fill="none" stroke="#231F20" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" d="
+	M69.855,119.001C66.389,122.693,61.464,125,56,125c-10.493,0-19-8.508-19-19s8.507-19,19-19c5.028,0,9.601,1.954,13,5.145"/>
+<path id="front-wheel" fill="none" stroke="#231F20" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" d="
+	M143,119.001c-3.467,3.692-8.392,5.999-13.855,5.999c-10.492,0-19-8.508-19-19c0-5.416,2.268-10.303,5.904-13.765"/>
+<line id="seat-post" fill="none" stroke="#CCCCCC" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="68.688" y1="47.678" x2="78.438" y2="88.562"/>
+<polyline id="rear-triangle" fill="none" stroke="#666666" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+	55.562,106 81.562,100.812 76.312,79.438 "/>
+<polyline id="top_tube" fill="none" stroke="#666666" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+	123.266,84.359 104.438,80.25 77.827,85.605 "/>
+<line id="forks" fill="none" stroke="#666666" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="116.188" y1="57.938" x2="129.062" y2="106"/>
+<line id="saddle" fill="none" stroke="#231F20" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="62.75" y1="46.062" x2="74.812" y2="46.062"/>
+<line id="bars" fill="none" stroke="#231F20" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="112" y1="46" x2="120" y2="46"/>
+</svg>

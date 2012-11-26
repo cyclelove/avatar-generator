@@ -1,3 +1,154 @@
 var CycleLove = {}
 
-CycleLove.renderAvatarGenerator = function() {}
+// CycleLove.AvatarGenerator ViewController
+CycleLove.AvatarGenerator = function(options) {
+  this.options = $.extend({}, this.options, options)
+  this.initialize()
+}
+$.extend(CycleLove.AvatarGenerator.prototype, {
+
+  options: {
+    colors: 'red green blue gold brown silver grey black'.split(' '),
+    bikes: [
+      'road-bike.svg',
+      'brompton.svg',
+      'bmx.svg'
+    ],
+    size: 512
+  },
+
+  bikes: {},
+
+  initialize: function() {
+    this.el = $(this.options.el)
+    this.el.css({ webkitTransform: 'translate3d(0, 0, 0)' })
+
+    var self = this
+
+    this.loadBikes().then(function() {
+      self.canvas = $('<div role="canvas">').appendTo(self.el)
+      self.bikePalette = self.createBikePalette().appendTo(self.el)
+      self.colorPalette = self.createColorPalette().appendTo(self.el)
+      self.el.on('click', '[role="bike-palette"] > *', function(e) {
+        e.preventDefault()
+        self.didClickBike($(this))
+      })
+      self.el.on('click', '[role="color-palette"] > *', function(e) {
+        e.preventDefault()
+        self.didClickColor($(this))
+      })
+      self.el.on('click', '[role="canvas"] > svg *', function(e) {
+        e.preventDefault()
+        self.didClickPart($(this))
+      })
+    })
+  },
+
+  didClickBike: function(button) {
+    this.bikePalette.children().css({ webkitTransform: 'scale(0.618)' })
+    button.css({ webkitTransform: 'scale(1)' })
+
+    this.canvas.html(
+      this.bikes[button.data('url')].clone()
+      .attr('width', this.options.size)
+      .attr('height', this.options.size)
+    )
+
+    this.canvas.find('svg *').css({ cursor: 'pointer' })
+  },
+
+  didClickColor: function(button) {
+    this.color = button.data('color')
+    this.colorPalette.children().css({ webkitTransform: 'scale(0.618)' })
+    button.css({ webkitTransform: 'scale(1)' })
+  },
+
+  didClickPart: function(part) {
+    if (!this.color) return
+
+    if (part.attr('id') === 'background') {
+      part.attr('fill', this.color)
+    } else {
+      part.attr('stroke', this.color)
+    }
+  },
+
+  loadBikes: function() {
+    var self = this
+
+    return $.when.apply($,
+      $.map(self.options.bikes, function(url, index) {
+        return $.get(url).then(function(data) {
+          self.bikes[url] = $(data).find('svg').clone()
+        })
+      })
+    )
+  },
+
+  createBikePalette: function() {
+    var urls = this.options.bikes,
+        bikes = this.bikes,
+        size = this.options.size,
+        count = urls.length,
+        margin = 8,
+        buttonSize = (size - (margin * (count - 1))) / count,
+        palette = $('<div role="bike-palette">')
+
+    $.each(urls, function(index, url) {
+      bikes[url]
+      .clone()
+      .data('url', url)
+      .attr('width', buttonSize)
+      .attr('height', buttonSize)
+      .css({
+        marginRight : margin + 'px',
+        cursor      : 'pointer'
+      })
+      .appendTo(palette)
+    })
+
+    return palette
+  },
+
+  createColorPalette: function() {
+    var colors = this.options.colors,
+        size = this.options.size,
+        count = colors.length,
+        margin = 8,
+        buttonSize = (size - (margin * (count - 1))) / count,
+        palette = $('<div role="color-palette">')
+
+    $.each(colors, function(index, color) {
+      $('<button>')
+      .data('color', color)
+      .css({
+        appearance       : 'none',
+        background       : color,
+        border           : 'none',
+        borderRadius     : (buttonSize / 2) + 'px',
+        cursor           : 'pointer',
+        height           : buttonSize + 'px',
+        width            : buttonSize + 'px',
+        marginRight      : margin
+      })
+      .appendTo(palette)
+    })
+
+    return palette
+  }
+
+})
+
+// Creates an avatar generator immediately after the <script>.
+CycleLove.AvatarGenerator.create = function() {
+  var id = 'cyclelove-avatar-generator'
+  document.write('<div id="' + id + '"></div>')
+  new CycleLove.AvatarGenerator({ el: '#' + id })
+}
+
+// Creates an avatar generator on the selected elements.
+$.fn.cycleLoveAvatarGenerator = function() {
+  return this.each(function() {
+    new CycleLove.AvatarGenerator({ el: this })
+  })
+}

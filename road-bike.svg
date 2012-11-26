@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="bike" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="182px" height="182px" viewBox="0 0 182 182" enable-background="new 0 0 182 182" xml:space="preserve">
+<circle id="background" fill="#FFFFFF" cx="91" cy="91" r="88"/>
+<circle id="border" fill="none" stroke="#000000" stroke-width="6" stroke-miterlimit="10" cx="91" cy="91" r="88"/>
+<path id="rear-wheel" fill="none" stroke="#000000" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" d="
+	M73.428,84.2 M73.086,83.853 M73.147,117.085C68.893,121.355,63.004,124,56.5,124C43.522,124,33,113.478,33,100.5S43.522,77,56.5,77
+	c6.331,0,12.077,2.504,16.304,6.576 M73.488,116.736c-0.112,0.117-0.226,0.233-0.341,0.349"/>
+<path id="front-wheel" fill="none" stroke="#000000" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" d="
+	M143.428,84.2 M143.086,83.853 M143.146,117.085C138.893,121.355,133.004,124,126.5,124c-12.978,0-23.5-10.522-23.5-23.5
+	c0-3.712,0.861-7.223,2.395-10.344 M143.488,116.736c-0.113,0.117-0.227,0.233-0.342,0.349"/>
+<polyline id="stem" fill="none" stroke="#CCCCCC" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10" points="
+	124.625,56.375 110.895,56.408 122.783,88.416 "/>
+<polyline id="top-tube-and-forks" fill="none" stroke="#666666" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="
+	68,66 114,66 127,101 "/>
+<path id="bars" fill="none" stroke="#000000" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10" d="M123.502,56.375
+	c0,0,7.958,0.084,7.958,7.042s-6.876,7.125-6.876,7.125"/>
+</svg>
