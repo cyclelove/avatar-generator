@@ -21,7 +21,7 @@ $.extend(CycleLove.AvatarGenerator.prototype, {
 
   initialize: function() {
     this.el = $(this.options.el)
-    this.el.css({ webkitTransform: 'translate3d(0, 0, 0)' })
+    this.el.css({ textAlign: 'center' })
 
     var self = this
 
@@ -29,6 +29,7 @@ $.extend(CycleLove.AvatarGenerator.prototype, {
       self.canvas = self.createCanvas().appendTo(self.el)
       self.colorPalette = self.createColorPalette().appendTo(self.el)
       self.bikePalette = self.createBikePalette().appendTo(self.el)
+      self.saveButton = self.createSaveButton().appendTo(self.el)
 
       self.el.on('click', '[role="bike-palette"] > *', function(e) {
         e.preventDefault()
@@ -43,6 +44,11 @@ $.extend(CycleLove.AvatarGenerator.prototype, {
       self.el.on('click', '[role="canvas"] > svg *', function(e) {
         e.preventDefault()
         self.didClickPart($(this))
+      })
+
+      self.el.on('click', '[role="save"]', function(e) {
+        e.preventDefault()
+        self.save()
       })
     })
   },
@@ -61,6 +67,7 @@ $.extend(CycleLove.AvatarGenerator.prototype, {
     this.canvas.find('svg').css({ display: 'block' })
 
     this.colorPalette.show()
+    this.saveButton.show()
   },
 
   didClickColor: function(button) {
@@ -166,6 +173,65 @@ $.extend(CycleLove.AvatarGenerator.prototype, {
     palette.hide()
 
     return palette
+  },
+
+  createSaveButton: function() {
+    return $('<button role="save">Save</button>')
+    .css({
+      background   : 'black',
+      color        : 'white',
+      border       : 'none',
+      padding      : '0.5em 1.5em',
+      borderRadius : '30px',
+      marginTop    : '1.5em',
+      display      : 'none'
+    })
+  },
+
+  save: function() {
+    var svg = this.canvas.find('svg').clone()
+    svg.width(1024).height(1024)
+    svg = $('<div>').append(svg).html()
+
+    var canvas = document.createElement('canvas')
+    canvas.width = '1024px'
+    canvas.height = '1024px'
+
+    canvg(canvas, svg)
+
+    var img = $('<img>')
+    .attr('src', canvas.toDataURL('image/png'))
+    .css({
+      display: 'block',
+      width: '512px', height: '512px'
+    })
+
+    var container = $('<div role="container">')
+    .append(img)
+    .css({
+      background: 'white',
+      borderRadius: '16px',
+      padding: '16px',
+      position: 'absolute',
+      left: '50%', top: '50%',
+      marginLeft: '-272px', marginTop: '-272px',
+      textAlign: 'center'
+    })
+    .append('<p>Drag this image to your desktop. Have fun.</p>')
+
+    var overlay = $('<div role="overlay">')
+    .css({
+      position: 'fixed',
+      background: 'rgba(0, 0, 0, 0.75)',
+      top: 0, right: 0, bottom: 0, left: 0,
+    })
+    .append(container)
+    .appendTo('body')
+
+    overlay.on('click', function(e) {
+      if (e.target !== this) return;
+      overlay.remove()
+    })
   }
 
 })
